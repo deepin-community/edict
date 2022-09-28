@@ -1,0 +1,29 @@
+#!/bin/sh
+
+FILES="edict.gz edict_WHATSNEW edict_doc.html \
+enamdict.gz enamdict_doc.html enamdict_doc.txt compdic.gz compdic_doc.html"
+SERVER="ftp://ftp.edrdg.org/pub/Nihongo"
+WGETOPTS="--no-verbose --timestamping --no-remove-listing --passive"
+
+if ! [ -x "`which wget`" ]
+then
+    echo "Warning: wget needed for downloading the files."
+    echo "Exit."
+    exit 1
+fi
+
+[ -z "$TMPDIR" ] && TMPDIR="/tmp"
+
+mkdir -p -m 755 $TMPDIR/edict
+cd $TMPDIR/edict
+
+URLS=""
+for f in $FILES
+do
+    URLS="$URLS $SERVER/$f"
+    rsync ftp.edrdg.org::nihongo/$f $f
+done
+#wget $WGETOPTS $URLS
+
+cd ..
+tar --exclude=.listing -cvzf $TMPDIR/edict-`date +%Y.%m.%d`.tar.gz edict

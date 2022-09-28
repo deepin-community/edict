@@ -1,0 +1,211 @@
+edict (2021.02.03-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Ludovic Drolez <ldrolez@debian.org>  Wed, 03 Feb 2021 13:35:00 +0100
+
+edict (2020.07.01-1) unstable; urgency=medium
+
+  * New upstream release
+  * Source only upload. Closes: #963812
+
+ -- Ludovic Drolez <ldrolez@debian.org>  Wed, 01 Jul 2020 10:05:09 +0200
+
+edict (2020.04.28-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Ludovic Drolez <ldrolez@debian.org>  Tue, 28 Apr 2020 14:28:38 +0200
+
+edict (2019.02.20-1) unstable; urgency=medium
+
+  * New upstream release
+  * Switch to quilt format
+  * edict-grep: invoke grep with --text. Closes: #857594
+
+ -- Ludovic Drolez <ldrolez@debian.org>  Wed, 20 Feb 2019 20:28:02 +0100
+
+edict (2016.12.06-1) unstable; urgency=low
+
+  * New upstream release
+  * Added edict-grep command by Leonardo Boiko. Closes: #537898
+
+ -- Ludovic Drolez <ldrolez@debian.org>  Tue, 06 Dec 2016 22:20:16 +0100
+
+edict (2015.11.09-1) unstable; urgency=medium
+
+  * New upstream release
+  * Some duplicates removed. Closes: #804142
+
+ -- Ludovic Drolez <ldrolez@debian.org>  Mon, 09 Nov 2015 18:52:21 +0100
+
+edict (2014.09.01-1) unstable; urgency=low
+
+  * New upstream release
+  * small update to the download script
+
+ -- Ludovic Drolez <ldrolez@debian.org>  Mon, 01 Sep 2014 22:42:00 +0200
+
+edict (2012.05.09-1) unstable; urgency=low
+
+  * New upstream release. Closes: #635611
+  * Removed Florian Ernst from uploaders. Closes: #658654
+
+ -- Ludovic Drolez <ldrolez@debian.org>  Wed, 09 May 2012 14:00:32 +0200
+
+edict (2011.05.25-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ludovic Drolez <ldrolez@debian.org>  Sun, 22 May 2011 14:06:50 +0200
+
+edict (2009.03.03-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ludovic Drolez <ldrolez@debian.org>  Tue, 03 Mar 2009 17:44:51 +0100
+
+edict (2008.02.13-1) unstable; urgency=high
+
+  * New upstream release
+  * RC bug fix: urgency = high
+  * The maintainer changed the license to CC by-sa 3.0. Closes: #445020
+  * Updated the license in the copyright file
+
+ -- Ludovic Drolez <ldrolez@debian.org>  Wed, 13 Feb 2008 19:27:22 +0100
+
+edict (2007.02.09-1) unstable; urgency=low
+
+  * New upstream release
+  * Bump Standards-Version to 3.7.2
+  * edict_doc.txt no longer available. Removed from 'docs'.
+
+ -- Ludovic Drolez <ldrolez@debian.org>  Sat, 10 Feb 2007 00:01:50 +0100
+
+edict (2006.10.09-1) unstable; urgency=medium
+
+  * urgency=medium in order to get this into etch in time
+  * New upstream release (Closes: #384942)
+
+ -- Florian Ernst <florian@debian.org>  Mon,  9 Oct 2006 16:35:28 +0200
+
+edict (2006.04.30-1) unstable; urgency=low
+
+  * New upstream release
+  * Move debhelper to Build-Depends as it is used during clean
+  * Bump Standards-Version to 3.7.0
+
+ -- Florian Ernst <florian@debian.org>  Sun, 30 Apr 2006 16:40:42 +0200
+
+edict (2006.01.17-1) unstable; urgency=low
+
+  * New upstream release
+  * Minor packaging adjustments
+
+ -- Florian Ernst <florian@debian.org>  Tue, 17 Jan 2006 16:23:28 +0100
+
+edict (2005.12.01-1) unstable; urgency=low
+
+  * New upstream release
+  * With Ludovic's consent adding myself to Uploaders
+  * debian/README.Debian: removed, as it doesn't give any new information
+    if it's not up-to-date
+  * Miscellaneous simplifications in the build process
+  * Debhelper compatibility level 3 is deprecated, so is DH_COMPAT use
+  * debian/control:
+    - add Upstream Homepage
+    - update enamdict description from Upstream Homepage
+  * debian/download: reduce number of program invocations
+  * Add overrides for copyright-should-refer-to-common-license-file-for-gpl
+    lintian false positive
+
+ -- Florian Ernst <florian@debian.org>  Thu,  1 Dec 2005 16:54:58 +0100
+
+edict (2005.10.27-1) unstable; urgency=low
+
+  * New upstream release. Closes: #335189
+
+ -- Ludovic Drolez <ldrolez@debian.org>  Thu, 27 Oct 2005 23:43:02 +0200
+
+edict (2005.10.04-1) unstable; urgency=low
+
+  * New upstream release. Closes: #333106
+
+ -- Ludovic Drolez <ldrolez@debian.org>  Mon, 10 Oct 2005 17:25:42 +0200
+
+edict (2005.06.10-1) unstable; urgency=low
+
+  * New upstream release. Closes: #314783
+
+ -- Ludovic Drolez <ldrolez@debian.org>  Thu, 23 Jun 2005 21:18:53 +0200
+
+edict (2004.08.04-1) unstable; urgency=low
+
+  * New upstream release by Florian Ernst. Closes: #259918
+  * debian/control: dropped gzip from Build-Depends-Indep as it is Essential.
+  * debian/rules:
+     * dropped configure target as it is neither mandatory nor necessary.
+     * dropped calls to dh_installcron and dh_installinfo.
+
+ -- Ludovic Drolez <ldrolez@debian.org>  Wed,  4 Aug 2004 12:49:29 +0200
+
+edict (2003.12.18-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ludovic Drolez <ldrolez@debian.org>  Wed, 24 Dec 2003 23:00:10 +0100
+
+edict (2003.06.10-1) unstable; urgency=low
+
+  * New license that allows modifications and free redistribution: now in main
+  * Removed jddict: seems to be not DFSG compliant
+  * New upstream release for edict. Closes: #184386
+  * New maintainer. Closes: #192689
+  * added debian/download to build a new source tar.
+  
+ -- Ludovic Drolez <ldrolez@debian.org>  Wed, 16 Jul 2003 11:28:10 +0200
+
+edict (2002.04.25-2) unstable; urgency=low
+
+  * Move enamdic from edict pacakge to enamdic packate. 
+    (closes: #150909, #150910)
+
+ -- Hayao Nakahara <nakahara@debian.org>  Wed, 26 Jun 2002 01:10:51 +0900
+
+edict (2002.04.25-1) unstable; urgency=low
+
+  * New upstream release. (edict, enamdict) (closes: #149167)
+
+ -- Hayao Nakahara <nakahara@debian.org>  Mon, 24 Jun 2002 14:02:54 +0900
+
+edict (2001.12.04-1) unstable; urgency=low
+
+  * New upstream version.
+  * Added compdic, enamdict, jddict. enamdict is built as
+    a separate package.
+
+ -- Hayao Nakahara <nakahara@debian.org>  Thu, 27 Dec 2001 09:49:40 +0900
+
+edict (2001.06.15-1) unstable; urgency=low
+
+  * New upstream version. (closes: #103952, #104077)
+  * Suggests lookup, xjdic or sdic-edit. (closes: #104240)
+
+ -- Hayao Nakahara <nakahara@debian.org>  Tue,  7 Aug 2001 19:27:06 +0900
+
+edict (2000.06.22-1) unstable; urgency=low
+
+  * New upstream version. (closes: #82700)
+  * Standards-Version: 3.2.1. (closes: #82701)
+
+ -- Hayao Nakahara <nakahara@debian.org>  Thu, 25 Jan 2001 00:59:43 +0900
+
+edict (1999.08.17-1) unstable; urgency=low
+
+  * Initial Release for debian.
+
+ -- Hayao Nakahara <nakahara@debian.org>  Thu, 14 Oct 1999 15:26:29 +0900
+
+Local variables:
+mode: debian-changelog
+End:

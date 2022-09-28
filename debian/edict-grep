@@ -1,0 +1,135 @@
+#!/bin/bash
+set -e
+
+common=n
+word=n
+exact=n
+case_sensitive=n
+
+encoding="$(locale -k charmap|sed -e 's/.*="\([^"]*\)"/\1/')"
+edict=/usr/share/edict/edict
+
+function usage()
+{
+  cat <<EOF
+Usage: $(basename $0) [options] <query>...
+
+Options:
+  -c: Match only common entries.
+  -w: Word match; each English query must match whole words only.
+  -e: Exact match; each query must match an entire edict field.
+  -s: Make English queries case-sensitive (default is insensitive).
+
+  -f EDICT_FILE: Path to edict (default: $edict).
+     This program assumes edict is in the original EUC-JP encoding.
+  -c Current terminal character encoding (default: $encoding).
+  -h: Show this message.
+
+If you use multiple queries, it is like an AND search (that is,
+  \$ $(basename $0) cold war
+will match all entries mentioning both 'cold' and 'war'.  To
+search for an exact sentence, use shell escaping:
+  \$ $(basename $0) "cold war"
+(and consider -e).
+
+Be sure to put the queries only AFTER all options!
+EOF
+}
+
+while getopts "cpwesf:c:h" opt; do
+  case $opt in
+    c|p) common=y;;
+    w) word=y;;
+    e) exact=y;;
+    s) case_sensitive=s;;
+    f) edict="$OPTARG";;
+    c) encoding="$OPTARG";;
+    h) usage; exit 0;;
+    *) usage; exit 1;;
+  esac
+done
+shift $(($OPTIND -1))
+
+if ! [ "$encoding" ]; then
+  cat 1>&2 <<EOS
+Error: could not guess terminal character encoding from \`locale -k charmap\`.
+(You can use option -c as a workaround.)
+EOS
+fi
+
+if ! [ -r "$edict" ]; then
+  echo "Error: could not read edict file \`$edict'." 2>&1
+  echo "Use option -f to specify the dictionary file." 2>&1
+  exit 1
+fi
+
+function encode()
+{
+  iconv -f $encoding -t EUC-JP
+}
+function decode()
+{
+  iconv -f EUC-JP -t $encoding
+}
+
+tmp1=$(mktemp)
+tmp2=$(mktemp)
+function cleanup()
+{
+  rm -f $tmp1 $tmp2 2>&1
+}
+trap cleanup EXIT
+
+
+declare -a queries
+for arg in "$@"; do
+  regexp="$arg"
+
+  if [ $word == y ]; then
+    regexp="\<$regexp\>"
+  fi
+
+  if [ $exact == y ]; then
+    # catches kanji words at start of line
+    tmp="(^$regexp )"
+    # catches pronounciations (between brackets)
+    tmp+="|(\\[$regexp\\])"
+    # catches exact english queries, ignoring initial dictionary tags
+    # that are between parenthesis
+    tmp+="|(/(\\([^)]*\\) *)*$regexp)/"
+    regexp="$tmp"
+  fi
+
+  queries+=("$regexp")
+done
+
+grepopts='-E --text'
+if ! [ $case_sensitive == y ]; then
+  grepopts+=' -i'
+fi
+
+first=y
+for query in "${queries[@]}"; do
+  equery="$(echo "$query" | encode)"
+  if [ $first == y ]; then
+    first=n
+    grep $grepopts "$equery" "$edict" > $tmp1
+  else
+    grep $grepopts "$equery" $tmp1 > $tmp2 && cp $tmp2 $tmp1
+  fi
+done
+
+if [ $common == y ]; then
+  common_rg="$(echo '(P)' |encode)"
+  grep $grepopts "$common_rg" $tmp1 > $tmp2 && cp $tmp2 $tmp1
+fi
+
+# a last grep to color the matched parts
+color_regexp=''
+for query in "${queries[@]}"; do
+  color_regexp+="|($query)"
+done
+color_regexp="$(echo "$color_regexp"|encode)"
+
+grep $grepopts --color=yes "$color_regexp" $tmp1|decode
+cleanup

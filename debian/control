@@ -1,0 +1,28 @@
+Source: edict
+Section: text
+Priority: optional
+Maintainer: Ludovic Drolez <ldrolez@debian.org>
+Build-Depends: debhelper (>= 10)
+Standards-Version: 4.3.0
+
+Package: edict
+Architecture: all
+Suggests: lookup | xjdic | sdic-edict
+Depends: ${misc:Depends}
+Homepage: http://www.csse.monash.edu.au/~jwb/edict.html
+Description: English / Japanese dictionary
+ The EDICT file is the outcome of a voluntary project to produce a freely 
+ available Japanese / English dictionary in machine-readable form. 
+ This package also contains the compdic, computing and communications 
+ dictionary file.
+ .
+
+Package: enamdict
+Architecture: all
+Homepage: http://www.csse.monash.edu.au/~jwb/enamdict_doc.html
+Depends: ${misc:Depends}
+Description: Dictionary of Japanese proper names
+ The ENAMDICT file contains Japanese proper names; place-names, surnames,
+ given names, (some) company names and product names.. These were originally
+ included in the EDICT file, along with other non-name entries. 
+ .

@@ -1,0 +1,52 @@
+
+	EDICT_WHAT'SNEW
+	===============
+
+This file summarizes what is new in each EDICT release.
+------------------------------------------------------------------------
+V2001-001 15 JUNE 2001 - 97399 entries
+
+The first new release for some time. The main changes are:
+
+- approximately 20,000 new entries. These have been over a year in
+preparation, and come from a number of sources.
+
+- a completely new system of marking the Parts of Speech (POS) of most
+entries.
+
+- the marking of the more common 20,000 Japanese words with a "(P)"
+marker.
+
+- the marking of (some of the) entries with multiple senses as 
+"(1) ..../(2)....." etc.
+
+V2001-002 28 November 2001 - 97927 entries
+
+No major changes; just a lot of smallish corrections, and a few additions.
+
+V2002-001 25 April 2002 - 100016 entries
+
+No major changes. A lot of corrections and about 2000 extra entries.
+
+V2003-001 4 February 2003 - 103527 entries
+
+Again, no major changes. A lot of corrections and some more entries.
+
+V2003-004 19 August 2003. - 106,844 entries
+
+Again, no major changes. A lot of corrections and some more entries.
+
+V2003-005 18 December 2003. - 107,735 entries.
+
+The main change has been to rework the (P) priority entries.
+About 2,000 had the tag removed and 5,000 had it added.
+
+V2005-002 1 May 2005 - 110,873 entries.
+
+The last year has mainly seen additions & corrections. All entries
+now have part-of-speech marked.
+
+V2005-003 10 June 2005 - 112,892 entries.
+
+More additions & corrections. Most of the additions are from
+Kanji Haitani's expanded yojijukugo collection.

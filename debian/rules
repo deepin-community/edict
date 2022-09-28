@@ -1,0 +1,63 @@
+#!/usr/bin/make -f
+# Sample debian/rules that uses debhelper. 
+# GNU copyright 1997 by Joey Hess.
+
+# Uncomment this to turn on verbose mode. 
+#export DH_VERBOSE=1
+
+build: build-arch build-indep
+build-arch: build-stamp
+build-indep: build-stamp
+build-stamp:
+	dh_testdir
+	touch $@
+
+clean:
+	dh_testdir
+	dh_testroot
+	# Add here commands to clean up after the build process.
+	dh_clean build-stamp compdic edict enamdict
+
+install: DH_OPTIONS=
+install: build
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs -A usr/share/edict
+
+	# Add here commands to install the package into debian/{edict,enamdict}.
+	gzip -dc compdic.gz >compdic
+	gzip -dc edict.gz >edict
+	gzip -dc enamdict.gz >enamdict
+	install -p -m 644 compdic debian/edict/usr/share/edict
+	install -p -m 644 edict debian/edict/usr/share/edict
+	install -p -m 644 enamdict debian/enamdict/usr/share/edict
+#	install -p -m 644 jddict.v02 debian/edict/usr/share/edict/jddict
+	install -D -m 644 $(CURDIR)/debian/overrides.edict \
+		$(CURDIR)/debian/edict/usr/share/lintian/overrides/edict
+	install -D -m 644 $(CURDIR)/debian/overrides.enamdict \
+		$(CURDIR)/debian/enamdict/usr/share/lintian/overrides/enamdict
+	install -D --mode=755 debian/edict-grep debian/edict/usr/bin/edict-grep
+
+# Build architecture-independent files here.
+# Pass -i to all debhelper commands in this target to reduce clutter.
+binary-indep: build install
+	dh_testdir -i
+	dh_testroot -i
+	dh_installdocs -i
+	dh_installexamples -i
+	dh_installmenu -i
+	dh_installchangelogs  -i
+	dh_link -i
+	dh_compress -i
+	dh_fixperms -i
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+# Build architecture-dependent files here.
+binary-arch: build install
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install
